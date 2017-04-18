@@ -1,6 +1,7 @@
 module SauceHelpers
   def initialize_driver(name)
-    capabilities = {name: name,
+    @name = name
+    capabilities = {name: @name,
                     build: ENV['BUILD_TAG'] ||= "Unknown Build - #{Time.now.to_i}"}
     capabilities[:browserName] = ENV['browserName'] if ENV['browserName']
 
@@ -8,9 +9,8 @@ module SauceHelpers
     capabilities[:version] = ENV['version'] if ENV['version']
 
     url = "https://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:443/wd/hub".strip
-    Watir::Browser.new :remote, {url: url,
-                                 desired_capabilities: capabilities}
-
+    @browser = Watir::Browser.new :remote, {url: url,
+                                            desired_capabilities: capabilities}
   end
 
   def submit_results(session_id, result)
@@ -20,17 +20,17 @@ module SauceHelpers
   def start_applitools
     return unless ENV['APPLITOOLS_ACCESS_KEY']
     require 'eyes_selenium'
-    Applitools::Eyes.new.tap { |eyes| eyes.api_key = ENV['APPLITOOLS_ACCESS_KEY'] }
+    @eyes = Applitools::Eyes.new.tap { |eyes| eyes.api_key = ENV['APPLITOOLS_ACCESS_KEY'] }
   end
 
-  def stop_applitools(eyes, name)
-    return if eyes.nil?
-    eyes.test(app_name: 'Applitools',
-              test_name: name,
-              viewport_size: {width: 1008, height: 615},
-              driver: @driver) do
+  def stop_applitools
+    return if @eyes.nil?
+    @eyes.test(app_name: 'Applitools',
+               test_name: @name,
+               viewport_size: {width: 1008, height: 615},
+               driver: @browser.wd) do
       # Visual validation point #1
-      eyes.check_window('Main Page')
+      @eyes.check_window('Main Page')
     end
   end
 end

@@ -12,14 +12,14 @@ RSpec.configure do |config|
   config.include SauceHelpers
 
   config.before(:each) do |test|
-    @name = test.full_description
-    @browser = initialize_browser(@name)
-    @eyes = start_applitools
+    @browser = initialize_browser(test.full_description)
+    start_applitools
   end
 
   config.after(:each) do |example|
-    stop_applitools(@eyes, @name)
+    stop_applitools
     submit_results(@browser.wd.session_id, !example.exception)
+    @browser.quit
   end
 end
 

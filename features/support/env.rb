@@ -13,12 +13,12 @@ require_relative '../support/pages/guinea_pig_page'
 require_relative "../support/sauce_helpers"
 
 Before do |scenario|
-  @name = "#{scenario.feature.name} - #{scenario.name}"
-  @browser = initialize_browser(@name)
-  @eyes = start_applitools
+  @browser = initialize_browser("#{scenario.feature.name} - #{scenario.name}")
+  start_applitools
 end
 
 After do |scenario|
-  stop_applitools(@eyes, @name)
+  stop_applitools
   submit_results(@browser.wd.session_id, scenario.passed?)
+  @browser.quit
 end
