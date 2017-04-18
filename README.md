@@ -1,5 +1,5 @@
 # Ruby Watir Tests
-[//]: # "[![Travis Status](https://travis-ci.org/saucelabs-sample-test-frameworks/Ruby-RSpec-Selenium.svg?branch=master)](https://travis-ci.org/saucelabs-sample-test-frameworks/Ruby-RSpec-Selenium)"
+[//]: # "[![Travis Status](https://travis-ci.org/sauce-examples/Watir.svg?branch=master)](https://travis-ci.org/sauce-examples/Watir)"
 
 ## Important Disclaimer
 This code is provided on an "AS-IS” basis without warranty of any kind, either express or implied, 
@@ -14,7 +14,7 @@ This project is not maintained by Sauce Labs Support.
 This is the recommended place to start if you want to create a new project in Ruby.
 If you already have an existing test suite and are just looking to add Sauce Labs 
 functionality to that project, or if you need to run tests on a mobile application,
-take a look at the [Ruby Example Tests](http://www.notimplementedyet.com) project.
+take a look at the [Ruby Example Tests](https://github.com/sauce-examples/Ruby) project.
  
  
 ## Technologies used in this project:
@@ -91,8 +91,8 @@ View the results on your [Sauce Labs Dashboard](https://saucelabs.com/beta/dashb
 ### Contributing
 
 This project is open source! 
-The maintainers welcome the community to [submit an issue](http://notimplementedyet.com/issues#new) with ideas or bug reports, 
-and [making pull requests](http://notimplementedyet.com/pulls#new) with bug fixes and suggested code improvements
+The maintainers welcome the community to [submit an issue](https://github.com/sauce-examples/Watir/issues#new) with ideas or bug reports, 
+and [making pull requests](https://github.com/sauce-examples/Watir/pulls#new) with bug fixes and suggested code improvements
 
 
 ## License
