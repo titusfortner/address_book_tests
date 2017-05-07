@@ -3,7 +3,7 @@ module SauceHelpers
     @name = name
     capabilities = {name: @name,
                     build: ENV['BUILD_TAG'] ||= "Unknown Build - #{Time.now.to_i}"}
-    capabilities[:browserName] = ENV['browserName'] if ENV['browserName']
+    capabilities[:browserName] = ENV['browserName'] || :chrome
 
     capabilities[:platform] = ENV['platform'] if ENV['platform']
     capabilities[:version] = ENV['version'] if ENV['version']
@@ -17,20 +17,4 @@ module SauceHelpers
     SauceWhisk::Jobs.change_status(session_id, result)
   end
 
-  def start_applitools
-    return unless ENV['APPLITOOLS_ACCESS_KEY']
-    require 'eyes_selenium'
-    @eyes = Applitools::Eyes.new.tap { |eyes| eyes.api_key = ENV['APPLITOOLS_ACCESS_KEY'] }
-  end
-
-  def stop_applitools
-    return if @eyes.nil?
-    @eyes.test(app_name: 'Applitools',
-               test_name: @name,
-               viewport_size: {width: 1008, height: 615},
-               driver: @browser.wd) do
-      # Visual validation point #1
-      @eyes.check_window('Main Page')
-    end
-  end
 end
