@@ -8,13 +8,12 @@ require_relative "support/sauce_helpers"
 
 require_all 'lib'
 
-Selenium::WebDriver.logger.level = :info
-
 RSpec.configure do |config|
   config.include SauceHelpers
 
   config.before(:each) do |test|
-    @browser = initialize_driver(test.full_description)
+    #@browser = initialize_driver(test.full_description)
+    @browser = Watir::Browser.new
     WatirDrops::PageObject.browser = @browser
   end
 
