@@ -4,11 +4,8 @@ module AddressBook
     page_url { "http://localhost:3000/sign_up" }
 
 
-    # Specify full Watir locator inside block
-    # element(:foo) { browser.div(id: 'foo') }
-
-    element(:email_address) {  }
-    element(:password) {  }
+    element(:email_address) { browser.text_field(id: "user_email") }
+    element(:password) { browser.text_field(id: "user_password") }
     element(:submit) { browser.button(visible: true) }
 
     def submit_form(user = nil)

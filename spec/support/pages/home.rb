@@ -4,11 +4,20 @@ module AddressBook
     page_url { "http://localhost:3000" }
 
 
-    # Specify full Watir locator inside block
-    # element(:foo) { browser.div(id: 'foo') }
+    element(:current_user) { browser.span(data_test: 'current-user') }
+    element(:logout) { browser.a(data_test: 'sign-out') }
 
-    element(:current_user) {  }
-    element(:logout) {  }
+    def logged_in?
+      current_user.present?
+    end
+
+    def signed_in_user
+      current_user.text
+    end
+
+    def sign_out_user
+      logout.click
+    end
 
   end
 end
