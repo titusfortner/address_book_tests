@@ -2,8 +2,6 @@ module AddressBook
   module Data
     class Address < Base
 
-      # Specify default data for each key inside block
-
       key(:first_name) { Defaults.translate :first_name }
       key(:last_name) { Defaults.translate :last_name }
       key(:street_address) { Defaults.translate :street_address }
