@@ -8,11 +8,12 @@ See [Watir Install Wiki](https://github.com/titusfortner/watir_install/wiki) for
 
 ## Copyright
 
-TODO: Add License and Copyright if desired
+Copyright (c) 2017 Titus Fortner
+See LICENSE.txt for details
 
 ## Support
 
 If you have any problems with the files created by Watir Install,
 [raise an issue](https://github.com/titusfortner/watir_install/issues/new),
-for any questions, contact [@titusfortner](http://watirtighttesting.com)
+for any questions, contact [@titusfortner](http://watirtight.com)
 or ask a question in the #watir channel on [Selenium Slack](http://seleniumhq.herokuapp.com/)
