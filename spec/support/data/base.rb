@@ -5,6 +5,8 @@ module AddressBook
   module Data
     class Base < WatirModel
 
+      attr_accessor :id
+
     end
 
     class Defaults
