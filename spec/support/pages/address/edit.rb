@@ -1,5 +1,5 @@
-module AddressBook::Address
-  class Edit < AddressBook::Base
+module AddressBook
+  class AddressEdit < AddressBook::Base
 
     page_url { |address| "http://localhost:3000/addresses/#{address.id}/edit" }
 

@@ -1,5 +1,5 @@
-module AddressBook::Address
-  class New < AddressBook::Base
+module AddressBook
+  class AddressNew < AddressBook::Base
 
     page_url { "http://localhost:3000/addresses/new" }
 

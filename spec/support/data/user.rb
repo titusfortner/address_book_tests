@@ -2,8 +2,8 @@ module AddressBook
   module Data
     class User < Base
 
-      key(:email_address) { Defaults.translate :email_address }
-      key(:password) { Defaults.translate :password }
+      key(:email_address) { Faker::Internet.email }
+      key(:password) { Faker::Internet.password }
           
     end
   end

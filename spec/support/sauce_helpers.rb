@@ -15,8 +15,8 @@ module SauceHelpers
                                             desired_capabilities: capabilities}
   end
 
-  def submit_results(session_id, result)
-    SauceWhisk::Jobs.change_status(session_id, result)
+  def submit_results(browser, result)
+    SauceWhisk::Jobs.change_status(browser.wd.session_id, result)
   end
 
 end

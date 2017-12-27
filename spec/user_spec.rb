@@ -1,27 +1,31 @@
 require 'spec_helper'
 
-describe AddressBook::Data::User do
+module AddressBook
 
-  let(:user) { AddressBook::Data::User.new }
+  describe "User" do
 
+    let(:user) { Data::User.new }
+    let(:site) { Site.new }
 
-  it 'signup' do
-    SignUp.visit.submit_form(user)
-    expect(Home.new.signed_in_user).to eq user.email_address
+    it 'signs up' do
+      SignUp.visit.submit_form(user)
+      expect(site.logged_in?(user)).to eq true
+    end
+
+    it 'login' do
+      site.create_user(user)
+
+      SignIn.visit.submit_form(user)
+
+      expect(site.logged_in?(user)).to eq true
+    end
+
+    it 'logout' do
+      site.login(user)
+
+      Home.visit.sign_out_user
+
+      expect(site.logged_in?(user)).to eq false
+    end
   end
-
-  it 'login' do
-    SignUp.visit.submit_form(user)
-    Home.new.sign_out_user
-
-    SignIn.visit.submit_form(user)
-    expect(Home.new.logged_in?).to eq true
-  end
-
-  it 'logout' do
-    SignUp.visit.submit_form(user)
-    Home.new.sign_out_user
-    expect(Home.new.logged_in?).to eq false
-  end
-
 end

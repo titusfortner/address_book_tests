@@ -1,14 +1,14 @@
-module AddressBook::Address
-  class List < AddressBook::Base
+module AddressBook
+  class AddressList < AddressBook::Base
 
     page_url { "http://localhost:3000/addresses" }
 
 
     element(:create) { browser.a(data_test: 'create') }
     elements(:addresses) { browser.tbody.wait_until(&:present?).trs }
-    element(:show) { |index = 0| browser.td(text: 'Show', index: index) }
-    element(:edit) { |index = 0| browser.td(text: 'Edit', index: index) }
-    element(:delete) { |index = 0| browser.td(text: 'Destroy', index: index) }
+    element(:show) { |index = 0| browser.a(text: 'Show', index: index) }
+    element(:edit) { |index = 0| browser.a(text: 'Edit', index: index) }
+    element(:delete) { |index = 0| browser.a(text: 'Destroy', index: index) }
     element(:notice) { browser.div(data_test: 'notice') }
 
     def new_address_link
@@ -22,6 +22,10 @@ module AddressBook::Address
     def follow_edit(address)
       index = address_index(address)
       edit(index).click
+    end
+
+    def address?(address)
+      !address_index(address).nil?
     end
 
     def destroy(address)

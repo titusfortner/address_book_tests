@@ -1,8 +1,7 @@
-module AddressBook::Address
-  class Show < AddressBook::Base
+module AddressBook
+  class AddressShow < AddressBook::Base
 
     page_url { |address| "http://localhost:3000/addresses/#{address.id}" }
-
 
     element(:list, required: true) { browser.a(data_test: 'list') }
     element(:edit) { browser.a(data_test: 'edit') }
@@ -14,14 +13,6 @@ module AddressBook::Address
     element(:city) { browser.span(data_test: 'city') }
     element(:state) { browser.span(data_test: 'state') }
     element(:zip_code) { browser.span(data_test: 'zip_code') }
-
-    def follow_list
-      list.click
-    end
-
-    def follow_edit
-      edit.click
-    end
 
     def updated_message?
       notice.text == "Address was successfully updated."

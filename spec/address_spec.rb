@@ -1,42 +1,51 @@
 require 'spec_helper'
 
-describe AddressBook do
-  let(:address) { AddressBook::Data::Address.new }
+module AddressBook
+  describe "Addresses" do
 
-  it 'creates' do
-    SignUp.visit.submit_form
-    Address::New.visit.submit_form(address)
-    expect(Address::Show.new.created_message?).to eq true
-    expect(Address::List.visit.present?(address)).to eq true
+    let(:address) { Data::Address.new }
+    let(:site) { Site.new }
+
+    before { site.login }
+
+    it 'creates' do
+      AddressNew.visit.submit_form(address)
+
+      expect(AddressShow.new.created_message?).to eq true
+      expect(site.address?(address)).to eq true
+    end
+
+    it 'shows' do
+      created_address = site.create_address(address)
+      page = AddressShow.visit(created_address)
+      expect(page.address?(address)).to eq true
+    end
+
+    it 'lists' do
+      site.create_address(address)
+      api_address = site.create_address
+
+      expect(AddressList.visit.address?(address)).to eq true
+      expect(AddressList.visit.address?(api_address.address)).to eq true
+    end
+
+    it 'edits' do
+      address = site.create_address
+
+      edited_address = AddressEdit.visit(address).submit_form
+
+      expect(AddressShow.new.updated_message?).to eq true
+      expect(site.address?(edited_address)).to eq true
+    end
+
+    it 'deletes' do
+      site.create_address(address)
+
+      AddressList.visit.destroy(address)
+
+      expect(AddressList.new.destroyed_message?).to eq true
+      expect(site.address?(address)).to eq false
+    end
+
   end
-
-  it 'shows' do
-    SignUp.visit.submit_form
-    Address::New.visit.submit_form(address)
-    expect(Address::Show.new.address?(address)).to eq true
-  end
-
-  it 'lists' do
-    SignUp.visit.submit_form
-    Address::New.visit.submit_form(address)
-    expect(Address::List.visit.present?(address)).to eq true
-  end
-
-  it 'edits' do
-    SignUp.visit.submit_form
-    Address::New.visit.submit_form(address)
-    Address::Show.new.follow_edit
-    edited_address = Address::Edit.new.submit_form
-    expect(Address::Show.new.updated_message?).to eq true
-    expect(Address::Show.new.address?(edited_address)).to eq true
-  end
-
-  it 'deletes' do
-    SignUp.visit.submit_form
-    Address::New.visit.submit_form(address)
-    Address::List.visit.destroy(address)
-    expect(Address::List.new.destroyed_message?).to eq true
-    expect(Address::List.new.present?(address)).to eq false
-  end
-
 end
