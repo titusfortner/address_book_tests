@@ -6,6 +6,7 @@ require "watir_model"
 require "require_all"
 require 'webdrivers'
 require 'watir_api'
+require 'watigiri'
 
 require_rel "support/apis"
 require_rel "support/site"
@@ -13,9 +14,8 @@ require_rel "support/data"
 require_rel "support/pages"
 
 log = Logger.new(STDOUT)
-log.level = :debug
+log.level = :info
 RestClient.log = log
-
 
 def sauce?
   ENV['USE_SAUCE'] == 'true'

@@ -28,7 +28,7 @@ module AddressBook
 
     def to_address
       parsed = AddressBook::Model::Address.keys.each_with_object({}) do |sym, hash|
-        hash[sym] = send(sym).text
+        hash[sym] = send(sym).text!.strip
       end
       AddressBook::Model::Address.new parsed
     end

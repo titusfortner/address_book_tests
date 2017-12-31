@@ -63,6 +63,9 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
+    watigiri (0.2.2)
+      nokogiri
+      watir (~> 6.10)
     watir (6.10.2)
       selenium-webdriver (~> 3.4, >= 3.4.1)
     watir_api (0.2.0)
@@ -90,6 +93,7 @@ DEPENDENCIES
   require_all
   rspec (~> 3.0)
   sauce_whisk
+  watigiri
   watir (~> 6.0)
   watir_api (~> 0.2.0)
   watir_drops (~> 0.7)
