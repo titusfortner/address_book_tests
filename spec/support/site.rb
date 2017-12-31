@@ -40,9 +40,9 @@ module AddressBook
     end
 
     def logged_in?(user)
-      res = API::User.show
-      hash = JSON.parse res.body
-      !hash.nil? && hash['email'] == user.email_address
+      found_user = API::User.show
+      return false if found_user.remember_token.nil?
+      found_user.data[:email] == user.email_address
     end
 
     def address?(address)

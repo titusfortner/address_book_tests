@@ -5,6 +5,7 @@ require "watir_drops"
 require "watir_model"
 require "require_all"
 require 'webdrivers'
+require 'watir_api'
 
 require_rel "support/apis"
 require_rel "support/site"
@@ -24,6 +25,7 @@ Site.base_url = if ENV['HEROKU'] == 'true'
                 else
                   'http://localhost:3000'
                 end
+WatirApi::Base.base_url = Site.base_url
 
 RSpec.configure do |config|
   config.include SauceHelpers if sauce?

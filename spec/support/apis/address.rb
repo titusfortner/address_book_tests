@@ -5,18 +5,6 @@ module AddressBook
         def endpoint
           'addresses'
         end
-
-        def create(address = nil)
-          address ||= Data::Address.new
-
-          payload = address.to_hash
-          payload[:address1] = payload.delete(:street_address)
-          payload[:address2] = payload.delete(:secondary_address)
-
-          result = super(payload: payload.to_json)
-          id = JSON.parse(result.body)['id']
-          new(address, id: id)
-        end
       end
 
       attr_accessor :address, :id
