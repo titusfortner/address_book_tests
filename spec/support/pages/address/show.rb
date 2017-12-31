@@ -1,7 +1,7 @@
 module AddressBook
   class AddressShow < AddressBook::Base
 
-    page_url { |address| "http://localhost:3000/addresses/#{address.id}" }
+    page_url { |address| "#{Site.base_url}/addresses/#{address.id}" }
 
     element(:list, required: true) { browser.a(data_test: 'list') }
     element(:edit) { browser.a(data_test: 'edit') }

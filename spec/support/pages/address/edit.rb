@@ -1,7 +1,7 @@
 module AddressBook
   class AddressEdit < AddressBook::Base
 
-    page_url { |address| "http://localhost:3000/addresses/#{address.id}/edit" }
+    page_url { |address| "#{Site.base_url}/addresses/#{address.id}/edit" }
 
     element(:first_name) { browser.text_field(id: 'address_first_name') }
     element(:last_name) { browser.text_field(id: 'address_last_name') }

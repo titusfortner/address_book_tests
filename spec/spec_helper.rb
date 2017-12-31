@@ -25,7 +25,7 @@ require_rel "support/sauce_helpers" if sauce?
 
 include AddressBook
 
-Site.base_url = if ENV['HEROKU'] == 'true'
+Site.base_url = unless ENV['HEROKU'] == 'true'
                   'https://address-book-example.herokuapp.com'
                 else
                   'http://localhost:3000'

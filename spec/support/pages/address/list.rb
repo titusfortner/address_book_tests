@@ -1,8 +1,7 @@
 module AddressBook
   class AddressList < AddressBook::Base
 
-    page_url { "http://localhost:3000/addresses" }
-
+    page_url { "#{Site.base_url}/addresses" }
 
     element(:create) { browser.a(data_test: 'create') }
     elements(:addresses) { browser.tbody.wait_until(&:present?).trs }

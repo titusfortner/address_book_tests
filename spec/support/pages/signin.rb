@@ -1,7 +1,7 @@
 module AddressBook
   class SignIn < AddressBook::Base
 
-    page_url { "http://localhost:3000/sign_in" }
+    page_url { "#{Site.base_url}/sign_in" }
 
 
     element(:email_address) { browser.text_field(id: "session_email") }
