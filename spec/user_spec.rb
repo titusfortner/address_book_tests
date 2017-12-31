@@ -7,6 +7,8 @@ module AddressBook
     let(:user) { Model::User.new }
     let(:site) { Site.new }
 
+    after { Site.user = nil }
+
     it 'signs up' do
       SignUp.visit.submit_form(user)
       expect(site.logged_in?(user)).to eq true

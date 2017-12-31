@@ -7,6 +7,7 @@ module AddressBook
     let(:site) { Site.new }
 
     before { site.login }
+    after { Site.user = nil }
 
     it 'creates' do
       AddressNew.visit.submit_form(address)

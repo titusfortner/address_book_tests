@@ -12,6 +12,11 @@ require_rel "support/site"
 require_rel "support/data"
 require_rel "support/pages"
 
+log = Logger.new(STDOUT)
+log.level = :debug
+RestClient.log = log
+
+
 def sauce?
   ENV['USE_SAUCE'] == 'true'
 end
