@@ -1,5 +1,5 @@
 module AddressBook
-  module Data
+  module Model
     class User < Base
 
       key(:email_address) { Faker::Internet.email }

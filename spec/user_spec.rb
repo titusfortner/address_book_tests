@@ -4,7 +4,7 @@ module AddressBook
 
   describe "User" do
 
-    let(:user) { Data::User.new }
+    let(:user) { Model::User.new }
     let(:site) { Site.new }
 
     it 'signs up' do

@@ -27,10 +27,10 @@ module AddressBook
     end
 
     def to_address
-      parsed = AddressBook::Data::Address.keys.each_with_object({}) do |sym, hash|
+      parsed = AddressBook::Model::Address.keys.each_with_object({}) do |sym, hash|
         hash[sym] = send(sym).text
       end
-      AddressBook::Data::Address.new parsed
+      AddressBook::Model::Address.new parsed
     end
 
   end

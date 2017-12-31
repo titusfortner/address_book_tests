@@ -3,7 +3,7 @@ require 'spec_helper'
 module AddressBook
   describe "Addresses" do
 
-    let(:address) { Data::Address.new }
+    let(:address) { Model::Address.new }
     let(:site) { Site.new }
 
     before { site.login }

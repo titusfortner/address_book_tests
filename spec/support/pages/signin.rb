@@ -9,7 +9,7 @@ module AddressBook
     element(:submit) { browser.button(visible: true) }
 
     def submit_form(user = nil)
-      user ||= AddressBook::Data::User.new
+      user ||= AddressBook::Model::User.new
       fill_form(user)
       submit.click
       user

@@ -13,7 +13,7 @@ module AddressBook
     element(:submit) { browser.button(visible: true) }
 
     def submit_form(address = nil)
-      address ||= AddressBook::Data::Address.new
+      address ||= AddressBook::Model::Address.new
       fill_form(address)
       submit.click
       address

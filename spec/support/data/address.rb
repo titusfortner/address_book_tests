@@ -1,5 +1,5 @@
 module AddressBook
-  module Data
+  module Model
     class Address < Base
 
       key(:first_name) { Faker::Name.first_name }

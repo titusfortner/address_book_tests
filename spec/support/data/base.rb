@@ -1,7 +1,5 @@
-require 'faker'
-
 module AddressBook
-  module Data
+  module Model
     class Base < WatirModel
 
     end

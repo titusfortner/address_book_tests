@@ -29,7 +29,6 @@ module AddressBook
       @@browser
     end
 
-
     def create_user(user = nil)
       API::User.create(user)
     end
@@ -49,7 +48,7 @@ module AddressBook
     def address?(address)
       index = API::Address.index
       addresses = JSON.parse(index.body)
-      addresses.any? { |h| Data::Address.convert(h) == address }
+      addresses.any? { |h| Model::Address.convert(h) == address }
     end
 
     def create_address(address = nil)

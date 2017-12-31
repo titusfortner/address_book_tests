@@ -3,7 +3,6 @@ module AddressBook
 
     page_url { "http://localhost:3000/addresses/new" }
 
-
     element(:first_name) { browser.text_field(id: 'address_first_name') }
     element(:last_name) { browser.text_field(id: 'address_last_name') }
     element(:street_address) { browser.text_field(id: 'address_street_address') }
@@ -14,7 +13,7 @@ module AddressBook
     element(:submit) { browser.button(visible: true) }
 
     def submit_form(address = nil)
-      address ||= AddressBook::Data::Address.new
+      address ||= AddressBook::Model::Address.new
       fill_form(address)
       submit.click
       address
