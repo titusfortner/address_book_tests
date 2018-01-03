@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 module AddressBook
+  include Page
+
   describe "Addresses" do
 
     let(:address) { Model::Address.new }

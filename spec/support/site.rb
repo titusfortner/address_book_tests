@@ -1,5 +1,3 @@
-require 'rest-client'
-
 module AddressBook
   class Site
 
@@ -20,7 +18,7 @@ module AddressBook
     end
 
     def login(user = nil)
-      Home.visit
+      Page::Home.visit
       user = create_user(user)
       browser.cookies.add 'remember_token', user.remember_token
     end

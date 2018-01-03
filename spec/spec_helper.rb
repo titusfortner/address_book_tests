@@ -5,13 +5,10 @@ require "watir_drops"
 require "watir_model"
 require "require_all"
 require 'webdrivers'
-require 'watir_api'
+require 'ui2api'
 require 'watigiri'
 
-require_rel "support/apis"
-require_rel "support/site"
-require_rel "support/data"
-require_rel "support/pages"
+require_rel 'support'
 
 log = Logger.new(STDOUT)
 log.level = :info
@@ -30,10 +27,10 @@ Site.base_url = unless ENV['HEROKU'] == 'true'
                 else
                   'http://localhost:3000'
                 end
-WatirApi::Base.base_url = Site.base_url
+UI2API::Base.base_url = Site.base_url
 
 RSpec.configure do |config|
-  config.include SauceHelpers if sauce?
+  config.include SauceLabs if sauce?
 
   config.before(:each) do
     @browser = if sauce?
@@ -44,6 +41,7 @@ RSpec.configure do |config|
 
     WatirDrops::PageObject.browser = @browser
     Site.browser = @browser
+    @site = Site.new
   end
 
   config.after(:each) do

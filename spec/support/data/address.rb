@@ -1,6 +1,6 @@
 module AddressBook
   module Model
-    class Address < WatirModel
+    class Address < Base
 
       key(:first_name) { Faker::Name.first_name }
       key(:last_name) { Faker::Name.last_name }

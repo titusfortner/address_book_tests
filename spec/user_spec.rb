@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 module AddressBook
+  include Page
 
   describe "User" do
 

@@ -1,6 +1,6 @@
 require 'sauce_whisk'
 
-module SauceHelpers
+module SauceLabs
   def initialize_driver(name = nil)
     @name = name || "Unknown Test at #{Time.now.to_i}"
     capabilities = {name: @name,
@@ -18,5 +18,4 @@ module SauceHelpers
   def submit_results(browser, result)
     SauceWhisk::Jobs.change_status(browser.wd.session_id, result)
   end
-
 end
