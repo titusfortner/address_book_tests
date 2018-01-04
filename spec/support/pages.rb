@@ -1,7 +1,5 @@
 module AddressBook
-  module Page
-    class Base < WatirDrops::PageObject
+  class Page::Base < WatirDrops::PageObject
 
-    end
   end
 end
