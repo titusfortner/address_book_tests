@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class SignUp < Base
 
-      page_url { "#{Site.base_url}/sign_up" }
+      page_url { "#{AddressBook.base_url}/sign_up" }
 
       element(:email_address) { browser.text_field(id: "user_email") }
       element(:password) { browser.text_field(id: "user_password") }

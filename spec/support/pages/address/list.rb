@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class AddressList < Base
 
-      page_url { "#{Site.base_url}/addresses" }
+      page_url { "#{AddressBook.base_url}/addresses" }
 
       element(:create) { browser.a(data_test: 'create') }
       elements(:addresses) { browser.tbody.wait_until(&:present?).trs }
@@ -22,8 +22,7 @@ module AddressBook
 
       def show(address)
         index = address_index(address)
-        sl = show_link(index)
-            sl.click
+        show_link(index).click
       end
 
       def address?(address)
@@ -35,10 +34,6 @@ module AddressBook
         raise StandardError, "Address not found: #{address.inspect}" if index.nil?
         delete_link(index).click
         browser.alert.ok
-      end
-
-      def present?(address)
-        !address_index(address).nil?
       end
 
       def destroyed_message?

@@ -22,8 +22,8 @@ RSpec.configure do |config|
 
   require_rel "support/sauce_helpers" if @config.use_sauce
 
-  Site.base_url = @config.base_url
-  UI2API::Base.base_url = Site.base_url
+  AddressBook.base_url = @config.base_url
+  UI2API::Base.base_url = AddressBook.base_url
 
   config.include SauceLabs if @config.use_sauce
 
@@ -36,8 +36,8 @@ RSpec.configure do |config|
                end
 
     WatirDrops::PageObject.browser = @browser
-    Site.browser = @browser
-    @site = Site.new
+    AddressBook.browser = @browser
+    @site = AddressBook.new
   end
 
   config.after(:each) do
