@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class Home < Base
 
-      page_url { AddressBook.base_url }
+      page_url { base_url }
 
       element(:current_user) { browser.span(data_test: 'current-user') }
       element(:sign_out) { browser.a(data_test: 'sign-out') }

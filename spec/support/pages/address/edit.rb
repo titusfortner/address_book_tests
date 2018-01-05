@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class AddressEdit < Base
 
-      page_url {  }
+      page_url { |address| "#{Site.base_url}/addresses/#{address.id}/edit" }
 
       element(:first_name) { browser.text_field(id: 'address_first_name') }
       element(:last_name) { browser.text_field(id: 'address_last_name') }
@@ -13,9 +13,9 @@ module AddressBook
       element(:zip_code) { browser.text_field(id: 'address_zip_code') }
       element(:submit) { browser.button(visible: true) }
 
-      # def goto(address)
-      #   AddressList.visit(address).edit(address)
-      # end
+      def goto(address)
+        AddressList.visit(address).edit(address)
+      end
 
       def submit_form(address = nil)
         address ||= AddressBook::Model::Address.new

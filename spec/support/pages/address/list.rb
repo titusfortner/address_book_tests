@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class AddressList < Base
 
-      page_url { "#{AddressBook.base_url}/addresses" }
+      page_url { "#{base_url}/addresses" }
 
       element(:create) { browser.a(data_test: 'create') }
       elements(:addresses) { browser.tbody.wait_until(&:present?).trs }

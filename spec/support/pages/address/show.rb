@@ -2,8 +2,7 @@ module AddressBook
   module Page
     class AddressShow < Base
 
-      page_url { |address|
-        "#{AddressBook.base_url}/addresses/#{address.id}" }
+      page_url { |address| "#{base_url}/addresses/#{address.id}" }
 
       element(:list, required: true) { browser.a(data_test: 'list') }
       element(:edit) { browser.a(data_test: 'edit') }

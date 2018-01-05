@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class SignIn < Base
 
-      page_url { "#{AddressBook.base_url}/sign_in" }
+      page_url { "#{base_url}/sign_in" }
 
       element(:email_address) { browser.text_field(id: "session_email") }
       element(:password) { browser.text_field(id: "session_password") }

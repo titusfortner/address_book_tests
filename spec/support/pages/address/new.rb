@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class AddressNew < Base
 
-      page_url { "#{AddressBook.base_url}/addresses/new" }
+      page_url { "#{base_url}/addresses/new" }
 
       element(:first_name) { browser.text_field(id: 'address_first_name') }
       element(:last_name) { browser.text_field(id: 'address_last_name') }
