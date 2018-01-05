@@ -9,8 +9,8 @@ module AddressBook
       element(:sign_in) { browser.a(data_test: 'sign-in') }
       element(:addresses) { browser.a(data_test: 'addresses') }
 
-      def logged_in?
-        current_user.present?
+      def logged_in?(user)
+        signed_in_user == user.email_address
       end
 
       def signed_in_user
@@ -18,7 +18,7 @@ module AddressBook
         current_user.text
       end
 
-      def sign_out_user
+      def logout_user
         sign_out.click
       end
 

@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.1.4)
+    activesupport (5.0.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
@@ -41,7 +41,7 @@ GEM
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
       rspec-mocks (~> 3.7.0)
-    rspec-core (3.7.0)
+    rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -77,7 +77,7 @@ GEM
     watir_model (0.5.0)
       activesupport
       yml_reader (>= 0.6)
-    webdrivers (3.2.3)
+    webdrivers (3.2.4)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (~> 3.0)
@@ -89,6 +89,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.13)
   data_magic
+  minitest (< 5.11)
   rake (~> 10.0)
   require_all
   rspec (~> 3.0)

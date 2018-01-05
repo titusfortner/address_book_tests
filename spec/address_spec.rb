@@ -8,8 +8,9 @@ module AddressBook
     let(:address) { Model::Address.new }
     let(:site) { Site.new }
 
-    before { site.login }
-    after { Site.user = nil }
+    before do
+      site.login_user
+    end
 
     it 'creates' do
       AddressNew.visit.submit_form(address)
@@ -19,23 +20,22 @@ module AddressBook
     end
 
     it 'shows' do
-      created_address = site.create_address(address)
-      page = AddressShow.visit(created_address)
-      expect(page.address?(address)).to eq true
+      site.create_address(address)
+
+      expect(AddressShow.visit(address).address?(address)).to eq true
     end
 
     it 'lists' do
       site.create_address(address)
-      api_address = site.create_address
 
       expect(AddressList.visit.address?(address)).to eq true
-      expect(AddressList.visit.address?(api_address.address)).to eq true
     end
 
     it 'edits' do
-      address = site.create_address
+      site.create_address(address)
+      edited_address = Model::Address.new
 
-      edited_address = AddressEdit.visit(address).submit_form
+      AddressEdit.visit(address).submit_form(edited_address)
 
       expect(AddressShow.new.updated_message?).to eq true
       expect(site.address?(edited_address)).to eq true

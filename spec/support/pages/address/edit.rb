@@ -13,6 +13,10 @@ module AddressBook
       element(:zip_code) { browser.text_field(id: 'address_zip_code') }
       element(:submit) { browser.button(visible: true) }
 
+      def goto(address)
+        AddressList.visit(address).edit(address)
+      end
+
       def submit_form(address = nil)
         address ||= AddressBook::Model::Address.new
         fill_form(address)

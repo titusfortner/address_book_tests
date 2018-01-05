@@ -2,7 +2,8 @@ module AddressBook
   module Page
     class AddressShow < Base
 
-      page_url { |address| "#{Site.base_url}/addresses/#{address.id}" }
+      page_url { |address|
+        "#{Site.base_url}/addresses/#{address.id}" }
 
       element(:list, required: true) { browser.a(data_test: 'list') }
       element(:edit) { browser.a(data_test: 'edit') }
@@ -14,6 +15,10 @@ module AddressBook
       element(:city) { browser.span(data_test: 'city') }
       element(:state) { browser.span(data_test: 'state') }
       element(:zip_code) { browser.span(data_test: 'zip_code') }
+
+      def goto(address)
+        AddressList.visit.show(address)
+      end
 
       def updated_message?
         notice.text == "Address was successfully updated."

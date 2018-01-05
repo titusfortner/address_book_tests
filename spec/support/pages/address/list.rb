@@ -6,22 +6,24 @@ module AddressBook
 
       element(:create) { browser.a(data_test: 'create') }
       elements(:addresses) { browser.tbody.wait_until(&:present?).trs }
-      element(:show) { |index = 0| browser.a(text: 'Show', index: index) }
-      element(:edit) { |index = 0| browser.a(text: 'Edit', index: index) }
-      element(:delete) { |index = 0| browser.a(text: 'Destroy', index: index) }
+      element(:show_link) { |index = 0| browser.a(text: 'Show', index: index) }
+      element(:edit_link) { |index = 0| browser.a(text: 'Edit', index: index) }
+      element(:delete_link) { |index = 0| browser.a(text: 'Destroy', index: index) }
       element(:notice) { browser.div(data_test: 'notice') }
 
-      def new_address_link
-        create.click
+      def new_address
+        create_link.click
       end
 
-      def number_addresses
-        addresses.size
-      end
-
-      def follow_edit(address)
+      def edit(address)
         index = address_index(address)
-        edit(index).click
+        edit_link(index).click
+      end
+
+      def show(address)
+        index = address_index(address)
+        sl = show_link(index)
+            sl.click
       end
 
       def address?(address)
@@ -31,7 +33,7 @@ module AddressBook
       def destroy(address)
         index = address_index(address)
         raise StandardError, "Address not found: #{address.inspect}" if index.nil?
-        delete(index).click
+        delete_link(index).click
         browser.alert.ok
       end
 
@@ -47,7 +49,8 @@ module AddressBook
 
       def address_index(address)
         addresses.find_index do |display|
-          display.text.include?(address.first_name) && display.text.include?(address.last_name)
+          text = display.text
+          text.include?(address.first_name) && text.include?(address.last_name)
         end
       end
 
