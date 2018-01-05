@@ -11,10 +11,6 @@ require 'watigiri'
 
 require_rel 'support'
 
-log = Logger.new(STDOUT)
-log.level = :info
-RestClient.log = log
-
 include AddressBook
 
 RSpec.configure do |config|
@@ -26,6 +22,7 @@ RSpec.configure do |config|
   UI2API::Base.base_url = Site::AddressBook.base_url
 
   config.include SauceLabs if @config.use_sauce
+  config.include Page
 
   config.before(:each) do
     @config = Model::Config.new

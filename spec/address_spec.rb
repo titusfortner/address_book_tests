@@ -8,14 +8,9 @@ module AddressBook
     let(:address) { Model::Address.new }
     let(:address_book) { Site::AddressBook.new }
 
-    before do
-      address_book.login_user
-    end
-
     it 'creates' do
       AddressNew.visit.submit_form(address)
 
-      expect(AddressShow.new.created_message?).to eq true
       expect(address_book.address?(address)).to eq true
     end
 
@@ -37,7 +32,6 @@ module AddressBook
 
       AddressEdit.visit(address).submit_form(edited_address)
 
-      expect(AddressShow.new.updated_message?).to eq true
       expect(address_book.address?(edited_address)).to eq true
     end
 
@@ -46,7 +40,6 @@ module AddressBook
 
       AddressList.visit.destroy(address)
 
-      expect(AddressList.new.destroyed_message?).to eq true
       expect(address_book.address?(address)).to eq false
     end
 
