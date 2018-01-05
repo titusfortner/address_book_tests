@@ -2,7 +2,7 @@ module AddressBook
   module Page
     class AddressEdit < Base
 
-      page_url { |address| "#{Site.base_url}/addresses/#{address.id}/edit" }
+      page_url { |address| "#{base_url}/addresses/#{address.id}/edit" }
 
       element(:first_name) { browser.text_field(id: 'address_first_name') }
       element(:last_name) { browser.text_field(id: 'address_last_name') }
