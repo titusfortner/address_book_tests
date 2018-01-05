@@ -3,7 +3,7 @@ module AddressBook
     class AddressBook
 
       class << self
-        attr_accessor :base_url, :browser
+        attr_accessor :base_url, :browser, :user
       end
 
       def base_url
@@ -15,25 +15,28 @@ module AddressBook
       end
 
       def create_user(user = nil)
-        login_user(user)
-        Page::Home.new.logout_user
+        @user = API::User.create(user)
       end
 
       def login_user(user = nil)
-        Page::SignUp.visit.submit_form(user)
+        Page::Home.visit
+        create_user(user)
+        browser.cookies.add 'remember_token', @user.remember_token
+        browser.refresh
       end
 
       def logged_in?(user)
-        Page::Home.new.signed_in_user == user.email_address
+        found_user = API::User.show
+        return false if found_user.data.nil?
+        found_user.data[:email] == user.email_address
       end
 
       def create_address(address = nil)
-        Page::AddressNew.visit.submit_form(address)
+        API::Address.create(address)
       end
 
       def address?(address)
-        return false unless Page::AddressList.visit.address?(address)
-        Page::AddressShow.visit(address).address?(address)
+        API::Address.index.addresses.include? address
       end
     end
   end

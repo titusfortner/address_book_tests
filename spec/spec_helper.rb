@@ -41,6 +41,7 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do
+    Site::AddressBook.user = nil
     submit_results(@browser, !example.exception) if @config.use_sauce
 
     @browser.quit

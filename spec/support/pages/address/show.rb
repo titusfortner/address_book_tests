@@ -15,10 +15,6 @@ module AddressBook
       element(:state) { browser.span(data_test: 'state') }
       element(:zip_code) { browser.span(data_test: 'zip_code') }
 
-      def goto(address)
-        AddressList.visit.show(address)
-      end
-
       def updated_message?
         notice.text == "Address was successfully updated."
       end

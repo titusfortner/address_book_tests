@@ -20,9 +20,9 @@ module AddressBook
     end
 
     it 'shows' do
-      address_book.create_address(address)
+      created_address = address_book.create_address(address)
 
-      expect(AddressShow.visit(address).address?(address)).to eq true
+      expect(AddressShow.visit(created_address).address?(address)).to eq true
     end
 
     it 'lists' do
@@ -32,10 +32,10 @@ module AddressBook
     end
 
     it 'edits' do
-      address_book.create_address(address)
+      created_address = address_book.create_address(address)
       edited_address = Model::Address.new
 
-      AddressEdit.visit(address).submit_form(edited_address)
+      AddressEdit.visit(created_address).submit_form(edited_address)
 
       expect(AddressShow.new.updated_message?).to eq true
       expect(address_book.address?(edited_address)).to eq true
