@@ -1,5 +1,7 @@
 module AddressBook
-  class API::Base < UI2API::Base
+  module API
+    class Base < UI2API::Base
 
+    end
   end
 end
