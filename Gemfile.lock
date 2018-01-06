@@ -74,8 +74,9 @@ GEM
       selenium-webdriver (~> 3.4, >= 3.4.1)
     watir_drops (0.7.2)
       watir (~> 6.0)
-    watir_model (0.5.0)
+    watir_model (0.5.1)
       activesupport
+      faker (~> 1.5)
       yml_reader (>= 0.6)
     webdrivers (3.2.4)
       nokogiri (~> 1.6)

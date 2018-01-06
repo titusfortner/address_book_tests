@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 RSpec.describe AddressBook do
   it "opens a browser" do
     browser = Site::AddressBook.browser
