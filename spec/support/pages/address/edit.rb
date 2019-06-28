@@ -9,7 +9,7 @@ module AddressBook
       element(:street_address) { browser.text_field(id: 'address_street_address') }
       element(:secondary_address) { browser.text_field(id: 'address_secondary_address') }
       element(:city) { browser.text_field(id: 'address_city') }
-      element(:state) { browser.text_field(id: 'address_state') }
+      element(:state) { browser.select(id: 'address_state') }
       element(:zip_code) { browser.text_field(id: 'address_zip_code') }
       element(:submit) { browser.button(visible: true) }
 

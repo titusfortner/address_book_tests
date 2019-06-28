@@ -10,6 +10,13 @@ module AddressBook
       key(:state) { Faker::Address.state }
       key(:zip_code) { Faker::Address.zip }
 
+      def ==(other)
+        keys = self.keys.dup
+        keys.delete(:state)
+        state_name = send(:state)
+        state_abbrev = Madison.get_abbrev(state_name)
+        (other.state == state_name || other.state == state_abbrev) && keys.all? { |k| send(k) == other[k] }
+      end
     end
   end
 end

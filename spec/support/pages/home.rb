@@ -14,14 +14,18 @@ module AddressBook
       end
 
       def signed_in_user
-        return nil if sign_in.present?
+        begin
+          return nil if sign_in.present?
+        # TODO: This is bad, figure it out
+        rescue Selenium::WebDriver::Error::WebDriverError
+          nil
+        end
         current_user.text
       end
 
       def logout_user
         sign_out.click
       end
-
     end
   end
 end

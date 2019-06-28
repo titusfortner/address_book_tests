@@ -37,6 +37,8 @@ module AddressBook
       end
 
       def destroyed_message?
+        # TODO: Fix the unexpected plain text response
+        sleep 2
         notice.text == "Address was successfully destroyed."
       end
 

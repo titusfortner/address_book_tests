@@ -12,6 +12,7 @@ module AddressBook
         user ||= Model::User.new
         fill_form(user)
         submit.click
+        submit.wait_while(&:present?)
         user
       end
 

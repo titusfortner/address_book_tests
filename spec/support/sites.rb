@@ -1,5 +1,6 @@
 module AddressBook
-  class Site::Base
-
+  module Site
+    class Base
+    end
   end
 end

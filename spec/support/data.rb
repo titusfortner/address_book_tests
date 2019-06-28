@@ -1,7 +1,8 @@
 require 'faker'
 
 module AddressBook
-  class Model::Base < WatirModel
-
+  module Model
+    class Base < WatirModel
+    end
   end
 end
